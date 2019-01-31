@@ -59,13 +59,18 @@ class TabItem {
   select(lastTab) {
     lastTab.tabItem.deselect();
     // Add a class named "tabs-item-selected" to this element
-    this.element.classList.add('tabs-item-selected');
+    // this.element.classList.add('tabs-item-selected');
+    setTimeout(() => {
+      TweenMax.to(this.element, 1, { opacity: 1, display: 'block' });
+    }, 500);
   }
 
   deselect() {
-    this.element.classList.remove('tabs-item-selected');
+    // this.element.classList.remove('tabs-item-selected');
+    TweenMax.to(this.element, 0.5, { opacity: 0, display: 'none' });
   }
 }
+
 
 // get all the table of tabs and set them up
 const allTabTables = document.querySelectorAll('.tabs');
