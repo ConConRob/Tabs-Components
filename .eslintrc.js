@@ -10,5 +10,6 @@ module.exports = {
         "quotes": 0,
         "no-plusplus":0,
         "no-param-reassign":0,
+        "class-methods-use-this":0,
     },
 };
