@@ -13,7 +13,7 @@ class TabLink {
     
     // Add a click event listener on this instance, calling the select method on click
     this.element.addEventListener("click", () => this.select());
-  };
+  }
 
   select() {
     // Get all of the elements with the tabs-link class
