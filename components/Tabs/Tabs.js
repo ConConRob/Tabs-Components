@@ -4,15 +4,14 @@ class Tabs {
     this.links = this.element.querySelectorAll('.tabs-link');
     this.links.forEach((link) => {
       const obj = new TabLink(link);
+      // set the init selected tab
       if (obj.element.classList.contains('tabs-link-selected')) {
         this.currentTab = obj.data;
       }
-      console.log(this.currentTab);
       return obj;
     });
   }
 }
-
 
 class TabLink {
   constructor(element) {
@@ -25,7 +24,6 @@ class TabLink {
     this.itemElement = document.querySelector(`.tabs-item[data-tab="${this.data}"]`);
     // Using the Item element, create a new instance of the TabItem class
     this.tabItem = new TabItem(this.itemElement);
-    
     // Add a click event listener on this instance, calling the select method on click
     this.element.addEventListener("click", () => this.select());
   }
@@ -39,6 +37,10 @@ class TabLink {
     this.element.classList.add('tabs-link-selected');
     // Call the select method on the item associated with this link
     this.tabItem.select();
+  }
+
+  deselect() {
+    this.element.classList.remove('tabs-link-selected');
   }
 }
 
@@ -56,16 +58,12 @@ class TabItem {
     // Add a class named "tabs-item-selected" to this element
     this.element.classList.add('tabs-item-selected');
   }
+
+  deselect() {
+    this.element.classList.remove('tabs-link-selected');
+  }
 }
 
-/* START HERE: 
-
-- Select all classes named ".tabs-link" and assign that value to the links variable
-
-- With your selection in place, now chain a .forEach() method onto the links variable to iterate over the DOM NodeList
-
-- In your .forEach() method's callback function, return a new instance of TabLink and pass in each link as a parameter
-
-*/
+// get all the table of tabs and set them up
 const allTabTables = document.querySelectorAll('.tabs');
 allTabTables.forEach(tabs => new Tabs(tabs));
