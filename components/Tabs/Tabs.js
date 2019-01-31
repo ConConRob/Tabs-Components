@@ -1,3 +1,18 @@
+class Tabs {
+  constructor(element) {
+    this.element = element;
+    this.links = this.element.querySelectorAll('.tabs-link');
+    this.links.forEach((link) => {
+      const obj = new TabLink(link);
+      if (obj.element.classList.contains('tabs-link-selected')) {
+        this.currentTab = obj.data;
+      }
+      console.log(this.currentTab);
+      return obj;
+    });
+  }
+}
+
 
 class TabLink {
   constructor(element) {
@@ -52,6 +67,5 @@ class TabItem {
 - In your .forEach() method's callback function, return a new instance of TabLink and pass in each link as a parameter
 
 */
-
-const links = document.querySelectorAll('.tabs-link');
-links.forEach(link => new TabLink(link));
+const allTabTables = document.querySelectorAll('.tabs');
+allTabTables.forEach(tabs => new Tabs(tabs));
